@@ -1,0 +1,24 @@
+tree("Root")
+	repeat
+		fallback
+			tree("Die")
+			tree("Hit")
+			tree("Attack")
+
+tree("Die")
+	sequence
+		not
+			isAlive
+		die
+
+tree("Hit")
+	sequence
+		isHit
+		hit
+		Wait 0.5
+
+tree("Attack")
+	sequence
+		moveClose("Player")
+		attack
+		Wait 1.0
