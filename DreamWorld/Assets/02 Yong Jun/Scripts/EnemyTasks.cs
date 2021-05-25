@@ -86,19 +86,42 @@ public class EnemyTasks : MonoBehaviour
     }
 
     [Task]
-    void attack()
+    void moveFar(string tag)
     {
-        float distance = 2f;
-        Transform target = GameObject.FindGameObjectWithTag("Player").transform;
+        float distance = 7.5f;
+        Transform target = GameObject.FindGameObjectWithTag(tag).transform;
 
         if (Vector3.Distance(gameObject.transform.position, target.transform.position) < distance)
         {
-            Debug.Log("enemy hits the player");
+            Debug.Log("enemy is near player");
             Task.current.Succeed();
         }
-        else
+        else if (Vector3.Distance(gameObject.transform.position, target.transform.position) > distance)
         {
-            Task.current.Fail();
+            Debug.Log("moving towards player");
+            meshAgent.SetDestination(target.position);
+            meshAgent.stoppingDistance = distance;
         }
+    }
+
+    [Task]
+    void attack()
+    {
+        #region idk
+        //float distance = 2f;
+        //Transform target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        //if (Vector3.Distance(gameObject.transform.position, target.transform.position) < distance)
+        //{
+        //    Debug.Log("enemy hits the player");
+        //    Task.current.Succeed();
+        //}
+        //else
+        //{
+        //    Task.current.Fail();
+        //}
+        #endregion
+        Debug.Log("enemy hits the player");
+        Task.current.Succeed();
     }
 }
