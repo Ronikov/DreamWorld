@@ -8,6 +8,7 @@ public class EnemyTasks : MonoBehaviour
 {
     public bool gotHit;
     public int hp;
+    public NavMeshAgent meshAgent;
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +80,8 @@ public class EnemyTasks : MonoBehaviour
         else if (Vector3.Distance(gameObject.transform.position, target.transform.position) > distance)
         {
             Debug.Log("moving towards player");
-            //navAgent.SetDestination(target);
+            meshAgent.SetDestination(target.position);
+            meshAgent.stoppingDistance = distance;
         }
     }
 
