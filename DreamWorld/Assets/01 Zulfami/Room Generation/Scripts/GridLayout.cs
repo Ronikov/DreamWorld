@@ -126,4 +126,5 @@ public class GridLayout : MonoBehaviour
 public class CellObj
 {
     public bool isEmpty = true;
+    public GameObject room;
 }
